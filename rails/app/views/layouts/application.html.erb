@@ -21,10 +21,16 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-surface text-ink font-body">
+    <header class="flex h-16 items-center border-b border-line-subtle px-6">
+      <%= link_to "stitch marker", root_path, class: "font-label text-sm tracking-wide" %>
+    </header>
+    <main class="mx-auto max-w-3xl px-4 py-8">
       <%= yield %>
     </main>
   </body>

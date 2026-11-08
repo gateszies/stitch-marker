@@ -1,0 +1,32 @@
+<%# locals: (label:, href: nil, variant: :primary, size: :md, icon: nil, icon_position: :start) -%>
+
+<%
+    variants = {
+        primary: "bg-primary text-on-primary hover:bg-primary-strong",
+        secondary: "border-2 border-line-subtle text-ink hover:bg-hover",
+    }
+    sizes = {
+        sm: "h-control-sm px-3 gap-1.5 text-sm",
+        md: "h-control-md px-4 gap-2 text-base",
+        lg: "h-control-lg px-6 gap-2 text-base"
+    }
+    icon_sizes = { sm: :sm, md: :sm, lg: :md }
+
+    classes = "inline-flex items-center justify-center rounded-full font-bold #{variants.fetch(variant)} #{sizes.fetch(size)}"
+%>
+
+<% content = capture do %>
+    <% if icon && icon_position == :start %>
+        <%= render "components/icon", icon: icon, size: icon_sizes.fetch(size) %>
+    <% end %>
+    <%= label %>
+    <% if icon && icon_position == :end %>
+        <%= render "components/icon", icon: icon, size: icon_sizes.fetch(size) %>
+    <% end %>
+<% end %>
+
+<% if href %>
+    <%= link_to content, href, class: classes %>
+<% else %>
+    <%= button_tag content, type: "button", class: classes %>
+<% end %>

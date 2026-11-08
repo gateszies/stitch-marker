@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require "net/http"
+require "fileutils"
+
+NOTIONS_REF = ARGV[0] || "v0.1.0"
+REPO = "gateszies/notions-design-system"
+DEST = File.expand_path("../vendor/notions", __dir__)
+
+FileUtils.mkdir_p(DEST)
+%w[tokens.css theme.css].each do |file|
+  uri = URI("https://raw.githubusercontent.com/#{REPO}/#{NOTIONS_REF}/dist/#{file}")
+  response = Net::HTTP.get_response(uri)
+  abort "Couldn't download #{file} (#{response.code})" unless response.is_a?(Net::HTTPSuccess)
+  File.write(File.join(DEST, file), response.body)
+  puts "  #{file}"
+end

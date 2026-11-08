@@ -1,10 +1,30 @@
-<%= link_to "← My patterns", root_path %>
+<%= link_to root_path, class: "inline-flex items-center gap-2 text-ink-subtle" do %>
+  <%= render "components/icon", icon: :arrow_left %>
+  My patterns
+<% end %>
 
-<h1><%= @pattern.title %></h1>
-<p><%= @pattern.yarn %> · <%= @pattern.sizes %></p>
+<div class="flex flex-col gap-4">
+  <h1 class="heading-lg mt-2"><%= @pattern.title %></h1>
 
-<ol>
+  <ul class="mt-3 flex gap-2">
+    <li>
+      <%= render "components/tag", label: @pattern.current_size, prefix: "Size" %>
+    </li>
+    <li>
+      <%= render "components/tag", label: @pattern.current_yarn, prefix: "Yarn" %>
+    </li>
+  </ul>
+</div>
+
+<ol class="mt-6 flex flex-col gap-4" data-controller="checklist">
   <% @pattern.steps.each do |step| %>
-    <li><%= step %></li>
+    <li data-checklist-target="step" class="group">
+      <label class="flex items-start gap-4 rounded-lg bg-surface-raised p-4 text-lg
+                    group-aria-[current=step]:bg-primary-subtle transition-colors
+                    has-checked:bg-transparent has-checked:text-ink-subtle has-checked:line-through">
+          <input type="checkbox" class="mt-1 size-5 accent-primary" data-action="change->checklist#checkCurrentStep">
+          <span><%= step %></span>
+        </label>
+      </li>
   <% end %>
 </ol>

@@ -1,0 +1,7 @@
+<%# locals: (label:, prefix: nil) -%>
+<span class="inline-flex h-7 items-center gap-1.5 rounded-full bg-surface-sunken px-3 text-sm font-extrabold text-ink">
+    <% if prefix %>
+      <span class="font-label text-xs font-normal text-ink-subtle"><%= prefix %></span>
+    <% end %>
+    <%= label %>
+</span>

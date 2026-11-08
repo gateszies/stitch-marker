@@ -1,5 +1,5 @@
 Pattern.find_or_create_by!(title: "Demo Mittens") do |pattern|
-    pattern.yarn = "Chunky"
+    pattern.yarn = "Chunky, Fingering, DK, Worsted"
     pattern.sizes = "Adult S, Adult M, Adult L"
     pattern.body = <<~TEXT
       Cast on 24 (28, 32) stitches and join in the round.

@@ -1,5 +1,17 @@
-<h1>My patterns</h1>
+<div class="flex flex-col gap-4">
+  <div class="flex items-center justify-between">
+    <h1 class="heading-lg">My patterns</h1>
+    <%= render "components/button", variant: :secondary, label: "Add a pattern", href: new_pattern_path, icon: :plus %>
+  </div>
 
-<% @patterns.each do |pattern| %>
-  <p><%= link_to pattern.title, pattern_path(pattern) %></p>
-<% end %>
+  <ul class="mt-6 flex flex-col gap-3">
+    <% @patterns.each do |pattern| %>
+      <li>
+        <%= link_to pattern_path(pattern), class: "flex flex-col gap-1 rounded-lg bg-surface-raised px-5 py-4 transition-colors hover:bg-hover" do %>
+          <span class="text-lg font-bold"><%= pattern.title %></span>
+          <span class="text-sm text-ink-subtle"><%= pattern.current_size %> · <%= pattern.current_yarn %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
