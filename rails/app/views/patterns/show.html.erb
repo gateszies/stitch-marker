@@ -16,13 +16,13 @@
   </ul>
 </div>
 
-<ol class="mt-6 flex flex-col gap-4" data-controller="checklist">
+<ol class="mt-6 flex flex-col gap-4" data-controller="checklist" data-checklist-pattern-id-value="<%= @pattern.id %>">
   <% @pattern.steps.each do |step| %>
     <li data-checklist-target="step" class="group">
       <label class="flex items-start gap-4 rounded-lg bg-surface-raised p-4 text-lg
                     group-aria-[current=step]:bg-primary-subtle transition-colors
                     has-checked:bg-transparent has-checked:text-ink-subtle has-checked:line-through">
-          <input type="checkbox" class="mt-1 size-5 accent-primary" data-action="change->checklist#checkCurrentStep">
+          <input type="checkbox" class="mt-1 size-5 accent-primary" data-action="change->checklist#checkCurrentStep change->checklist#save">
           <span><%= step %></span>
         </label>
       </li>
