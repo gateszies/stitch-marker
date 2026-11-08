@@ -1,0 +1,10 @@
+<%= link_to "← My patterns", root_path %>
+
+<h1><%= @pattern.title %></h1>
+<p><%= @pattern.yarn %> · <%= @pattern.sizes %></p>
+
+<ol>
+  <% @pattern.steps.each do |step| %>
+    <li><%= step %></li>
+  <% end %>
+</ol>
